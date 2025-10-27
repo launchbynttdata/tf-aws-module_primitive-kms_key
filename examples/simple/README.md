@@ -1,4 +1,4 @@
-# tf-aws-module_primitive-kms_key
+# simple
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -16,14 +16,15 @@
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_kms_key"></a> [kms\_key](#module\_kms\_key) | ../../ | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_kms_key.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
-| [aws_iam_policy_document.kms_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 
 ## Inputs
 
@@ -43,7 +44,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_key_id"></a> [key\_id](#output\_key\_id) | The ID of the KMS key. |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the KMS key. |
 | <a name="output_tags_all"></a> [tags\_all](#output\_tags\_all) | A map of tags assigned to the KMS key, including those inherited from the provider default\_tags configuration block. |
+| <a name="output_key_id"></a> [key\_id](#output\_key\_id) | The ID of the KMS key. |
 <!-- END_TF_DOCS -->
