@@ -37,7 +37,7 @@
 | <a name="input_is_enabled"></a> [is\_enabled](#input\_is\_enabled) | Specifies whether the KMS key is enabled. | `bool` | `true` | no |
 | <a name="input_enable_key_rotation"></a> [enable\_key\_rotation](#input\_enable\_key\_rotation) | Specifies whether key rotation is enabled for the KMS key. | `bool` | `false` | no |
 | <a name="input_rotation_period_in_days"></a> [rotation\_period\_in\_days](#input\_rotation\_period\_in\_days) | The number of days in the rotation period for the KMS key. Only applicable if enable\_key\_rotation is true. | `number` | `365` | no |
-| <a name="input_multi_region"></a> [multi\_region](#input\_multi\_region) | Specifies whether the KMS key is a multi-region key. | `bool` | n/a | yes |
+| <a name="input_multi_region"></a> [multi\_region](#input\_multi\_region) | Specifies whether the KMS key is a multi-region key. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the KMS key. | `map(string)` | `{}` | no |
 
 ## Outputs
