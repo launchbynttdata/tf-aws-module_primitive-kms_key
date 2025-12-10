@@ -54,7 +54,6 @@ variable "rotation_period_in_days" {
 variable "multi_region" {
   description = "Specifies whether the KMS key is a multi-region key."
   type        = bool
-  default     = false
 }
 
 variable "tags" {
