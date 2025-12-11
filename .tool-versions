@@ -1,4 +1,4 @@
-conftest 0.63.0
+conftest 0.56.0
 golang 1.25.4
 golangci-lint 2.7.2
 pre-commit 4.5.0
