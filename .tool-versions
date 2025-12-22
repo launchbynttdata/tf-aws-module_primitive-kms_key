@@ -1,9 +1,12 @@
 conftest 0.56.0
-golang 1.24.2
-golangci-lint 2.2.1
-pre-commit 4.2.0
+golang 1.25.5
+golangci-lint 2.7.2
+pre-commit 4.5.1
 regula 3.2.1 # https://github.com/launchbynttdata/asdf-regula
-terraform 1.10.3
-terraform-docs 0.20.0
-terragrunt 0.77.22
-tflint 0.57.0
+terraform 1.14.3
+terraform-docs 0.21.0
+terragrunt 0.94.0
+tflint 0.60.0
+tfsec 1.28.14
+trivy 0.68.1
+checkov 3.2.495
