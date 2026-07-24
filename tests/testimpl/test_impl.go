@@ -17,13 +17,42 @@ import (
 )
 
 const (
-	failedToDescribeKeyMsg = "Failed to describe KMS key"
-	failedToGetKeyPolicyMsg = "Failed to get KMS key policy"
+	failedToDescribeKeyMsg    = "Failed to describe KMS key"
+	failedToGetKeyPolicyMsg   = "Failed to get KMS key policy"
 	failedToParseKeyPolicyMsg = "Failed to parse KMS key policy"
-	failedToListKeyTagsMsg = "Failed to list KMS key tags"
+	failedToListKeyTagsMsg    = "Failed to list KMS key tags"
 )
 
 func TestComposableComplete(t *testing.T, ctx lcafTypes.TestContext) {
+	kmsClient := GetAWSKMSClient(t)
+
+	keyId := terraform.Output(t, ctx.TerratestTerraformOptions(), "key_id")
+	keyArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")
+
+	t.Run("TestKMSKeyExists", func(t *testing.T) {
+		testKMSKeyExists(t, kmsClient, keyId, keyArn)
+	})
+
+	t.Run("TestKMSKeyProperties", func(t *testing.T) {
+		testKMSKeyProperties(t, kmsClient, keyId)
+	})
+
+	t.Run("TestKMSKeyPolicy", func(t *testing.T) {
+		testKMSKeyPolicy(t, kmsClient, keyId)
+	})
+
+	t.Run("TestKMSKeyTags", func(t *testing.T) {
+		var keyTags map[string]interface{}
+		terraform.OutputStruct(t, ctx.TerratestTerraformOptions(), "tags_all", &keyTags)
+		testKMSKeyTags(t, kmsClient, keyId, keyTags)
+	})
+}
+
+// TestComposableCompleteReadOnly performs only read-only verification against
+// already-deployed infrastructure. It must not create, update, or destroy any
+// resources, so it reuses the same read-only assertions as
+// TestComposableComplete without the setup/teardown apply cycle.
+func TestComposableCompleteReadOnly(t *testing.T, ctx lcafTypes.TestContext) {
 	kmsClient := GetAWSKMSClient(t)
 
 	keyId := terraform.Output(t, ctx.TerratestTerraformOptions(), "key_id")
