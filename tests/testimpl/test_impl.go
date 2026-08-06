@@ -26,8 +26,8 @@ const (
 func TestComposableComplete(t *testing.T, ctx lcafTypes.TestContext) {
 	kmsClient := GetAWSKMSClient(t)
 
-	keyId := terraform.Output(t, ctx.TerratestTerraformOptions(), "key_id")
-	keyArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")
+	keyId := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "key_id")
+	keyArn := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "arn")
 
 	t.Run("TestKMSKeyExists", func(t *testing.T) {
 		testKMSKeyExists(t, kmsClient, keyId, keyArn)
@@ -43,7 +43,7 @@ func TestComposableComplete(t *testing.T, ctx lcafTypes.TestContext) {
 
 	t.Run("TestKMSKeyTags", func(t *testing.T) {
 		var keyTags map[string]interface{}
-		terraform.OutputStruct(t, ctx.TerratestTerraformOptions(), "tags_all", &keyTags)
+		terraform.OutputStructContext(t, context.Background(), ctx.TerratestTerraformOptions(), "tags_all", &keyTags)
 		testKMSKeyTags(t, kmsClient, keyId, keyTags)
 	})
 }
@@ -55,8 +55,8 @@ func TestComposableComplete(t *testing.T, ctx lcafTypes.TestContext) {
 func TestComposableCompleteReadOnly(t *testing.T, ctx lcafTypes.TestContext) {
 	kmsClient := GetAWSKMSClient(t)
 
-	keyId := terraform.Output(t, ctx.TerratestTerraformOptions(), "key_id")
-	keyArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")
+	keyId := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "key_id")
+	keyArn := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "arn")
 
 	t.Run("TestKMSKeyExists", func(t *testing.T) {
 		testKMSKeyExists(t, kmsClient, keyId, keyArn)
@@ -72,7 +72,7 @@ func TestComposableCompleteReadOnly(t *testing.T, ctx lcafTypes.TestContext) {
 
 	t.Run("TestKMSKeyTags", func(t *testing.T) {
 		var keyTags map[string]interface{}
-		terraform.OutputStruct(t, ctx.TerratestTerraformOptions(), "tags_all", &keyTags)
+		terraform.OutputStructContext(t, context.Background(), ctx.TerratestTerraformOptions(), "tags_all", &keyTags)
 		testKMSKeyTags(t, kmsClient, keyId, keyTags)
 	})
 }
